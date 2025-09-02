@@ -21,7 +21,7 @@ jobs:
             firebase_admin: '12'
     name: tests (zod@${{ matrix.zod }}, firebase@${{ matrix.firebase }}, firebase-admin@${{ matrix.firebase_admin }})
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: cache firebase emulator
         uses: actions/cache@v4
         with:

@@ -7,7 +7,7 @@ jobs:
     name: lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: setup pnpm
         uses: valian-ca/github-workflows/.github/actions/setup-pnpm@main
       - name: eslint
@@ -38,7 +38,7 @@ jobs:
             firebase_admin: '12'
     name: type check (zod@${{ matrix.zod }}, firebase@${{ matrix.firebase }}, firebase-admin@${{ matrix.firebase_admin }})
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: setup pnpm
         uses: valian-ca/github-workflows/.github/actions/setup-pnpm@main
       - name: Install zod@^${{ matrix.zod }} at workspace root
@@ -60,7 +60,7 @@ jobs:
     name: markdown lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: DavidAnson/markdownlint-cli2-action@v20
         with:
           globs: '**/*.md'
