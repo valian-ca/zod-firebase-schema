@@ -16,11 +16,9 @@ type ZodSimpleDocumentData<Output extends DocumentData = DocumentData, Input ext
   Input
 >
 
-type ZodUnionDocumentData<T extends ReadonlyArray<ZodSimpleDocumentData>> = z.ZodUnion<T>
-
 export type ZodTypeDocumentData<Output extends DocumentData = DocumentData, Input extends DocumentData = Output> =
   | ZodSimpleDocumentData<Output, Input>
-  | ZodUnionDocumentData<[ZodSimpleDocumentData<Output, Input>]>
+  | z.ZodUnion<readonly [ZodSimpleDocumentData<Output, Input>, ...Array<ZodSimpleDocumentData<Output, Input>>]>
 
 export type DocumentInput<Z extends ZodTypeDocumentData = ZodTypeDocumentData> = z.input<Z>
 
