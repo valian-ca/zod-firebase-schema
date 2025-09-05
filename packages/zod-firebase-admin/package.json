@@ -50,13 +50,14 @@
   "type": "module",
   "main": "./lib/index.cjs",
   "module": "./lib/index.mjs",
-  "types": "./lib/index.d.ts",
+  "types": "./lib/index.d.mts",
   "engines": {
     "node": ">= 22.0.0"
   },
   "scripts": {
-    "build": "rm -rf ./lib && rollup -c",
+    "build": "tsdown",
     "prepack": "npm run build",
+    "lint:publint": "pnpm build && publint",
     "serve": "firebase emulators:start --only firestore --project demo-zod-firebase-admin",
     "test": "vitest run --coverage",
     "test:integration": "vitest run --config=vitest.integration.config.mjs --coverage",
