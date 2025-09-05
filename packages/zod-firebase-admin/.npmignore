@@ -10,3 +10,4 @@ rollup.config.js
 eslint.config.mjs
 .gitignore
 firebase.json
+tsdown.config.json

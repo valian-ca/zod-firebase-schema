@@ -7,5 +7,6 @@
   "eslint.format.enable": true,
   "eslint.useFlatConfig": true,
   "prettier.enable": true,
-  "prettier.documentSelectors": ["**/*.ts", "**/*.tsx", "**/*.js"]
+  "prettier.documentSelectors": ["**/*.ts", "**/*.tsx", "**/*.js"],
+  "nxConsole.generateAiAgentRules": true
 }
