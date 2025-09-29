@@ -30,8 +30,8 @@
     "test:integration:ci": "nx run-many -t test:integration:ci --parallel=false"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/cli": "^20.0.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@lerna-lite/cli": "^4.7.1",
     "@lerna-lite/publish": "^4.7.1",
     "@nx/eslint": "^21.3.11",
