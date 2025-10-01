@@ -10,3 +10,8 @@ onlyBuiltDependencies:
   - protobufjs
   - re2
   - unrs-resolver
+
+publicHoistPattern:
+  - eslint-import-resolver-typescript
+
+resolvePeersFromWorkspaceRoot: true
