@@ -48,7 +48,7 @@
     "firebase-tools": "^14.17.0",
     "husky": "^9.1.7",
     "markdownlint-cli2": "^0.18.1",
-    "nx": "^22.0.0",
+    "nx": "^22.0.1",
     "prettier": "^3.6.2",
     "publint": "^0.3.13",
     "ts-essentials": "^10.1.1",
