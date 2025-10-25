@@ -8,7 +8,7 @@ import { collectionsBuilder } from '../src'
 
 const TestDocumentZod = z.object({
   name: z.string(),
-  values: z.array(z.string()).optional().default([]),
+  values: z.string().array().default([]),
 })
 
 const schema = {
