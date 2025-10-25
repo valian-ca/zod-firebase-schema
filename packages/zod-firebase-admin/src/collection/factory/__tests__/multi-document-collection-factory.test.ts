@@ -136,14 +136,14 @@ describe('multiDocumentCollectionFactory', () => {
     })
 
     it('should parse fallback with _id via zod when includeDocumentIdForZod is true', async () => {
-      const TestDocumentZodWithId = z.discriminatedUnion('_id', [
+      const TestDocumentWithIdZod = z.discriminatedUnion('_id', [
         z.object({ _id: z.literal('string'), value: z.string() }),
         z.object({ _id: z.literal('number'), value: z.number() }),
       ])
-      type TestDocumentReferenceWithId = ZodDocumentReference<typeof TestDocumentZodWithId>
-      type TestDocumentSnapshotWithId = ZodDocumentSnapshot<typeof TestDocumentZodWithId>
+      type TestDocumentReferenceWithId = ZodDocumentReference<typeof TestDocumentWithIdZod>
+      type TestDocumentSnapshotWithId = ZodDocumentSnapshot<typeof TestDocumentWithIdZod>
 
-      const schema = { zod: TestDocumentZodWithId, includeDocumentIdForZod: true } as const
+      const schema = { zod: TestDocumentWithIdZod, includeDocumentIdForZod: true } as const
       const collectionWithId = multiDocumentCollectionFactory(
         schemaFirestoreFactoryBuilder('foo', schema, { getFirestore }).build(),
         schema,

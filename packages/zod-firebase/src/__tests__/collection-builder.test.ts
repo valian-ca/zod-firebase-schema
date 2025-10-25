@@ -8,7 +8,7 @@ vi.mock('@firebase/firestore')
 
 const TestDocumentZod = z.object({
   name: z.string(),
-  list: z.array(z.string()).optional().default([]),
+  list: z.string().array().default([]),
 })
 
 const TestSubCollectionDocumentZod = z.object({

@@ -20,7 +20,7 @@ vi.unmock('@firebase/firestore')
 
 const TestDocumentZod = z.object({
   name: z.string(),
-  values: z.array(z.string()).optional().default([]),
+  values: z.string().array().default([]),
 })
 
 const TestSubCollectionDocumentZod = z.object({
@@ -29,7 +29,7 @@ const TestSubCollectionDocumentZod = z.object({
 
 const TestSubMultiCollectionDocumentZod = z.object({
   value: z.number(),
-  name: z.string().optional().default('default'),
+  name: z.string().default('default'),
 })
 
 const WithIdDocumentZod = z.discriminatedUnion('_id', [
