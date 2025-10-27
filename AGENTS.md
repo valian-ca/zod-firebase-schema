@@ -15,7 +15,7 @@ The project uses a builder pattern to define collections and their sub-collectio
 
 ## Building and Running
 
-This project uses `pnpm` as its package manager and `lerna` to manage the monorepo.
+This project uses `pnpm` as its package manager and `nx` to manage the monorepo.
 
 ### Key Commands
 
