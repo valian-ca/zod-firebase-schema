@@ -1,3 +1,14 @@
+## 2.1.0 (2025-10-31)
+
+### 🩹 Fixes
+
+- **deps:** update dependency type-fest to v5 ([#340](https://github.com/valian-ca/zod-firebase-admin/pull/340))
+- typescript error ([#336](https://github.com/valian-ca/zod-firebase-admin/pull/336))
+
+### ❤️ Thank You
+
+- Julien Marcil
+
 ## 2.0.4 (2025-08-18)
 
 ### 🩹 Fixes
