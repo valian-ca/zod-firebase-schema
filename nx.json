@@ -3,8 +3,11 @@
   "release": {
     "projects": ["packages/*"],
     "changelog": {
-      "projectChangelogs": false,
-      "workspaceChangelog": false
+      "projectChangelogs": true,
+      "workspaceChangelog": {
+        "file": false,
+        "createRelease": "github"
+      }
     }
   },
   "plugins": [
