@@ -4,8 +4,9 @@ import { json } from '@valian/eslint-config/json'
 import { typescript } from '@valian/eslint-config/typescript'
 import { vitest } from '@valian/eslint-config/vitest'
 import { zod } from '@valian/eslint-config/zod'
+import { defineConfig } from 'eslint/config'
 
-export default [
+export default defineConfig([
   ...base,
   ...typescript,
   ...importSort,
@@ -40,4 +41,4 @@ export default [
       },
     },
   },
-]
+])

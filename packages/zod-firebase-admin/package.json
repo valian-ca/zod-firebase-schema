@@ -28,7 +28,6 @@
     "type-fest": "^5.0.0"
   },
   "devDependencies": {
-    "firebase-admin": "^13.4.0",
     "firebase-functions-test": "^3.4.1",
     "vitest-mock-extended": "^3.1.0"
   },
@@ -62,6 +61,6 @@
     "test": "vitest run --coverage",
     "test:integration": "vitest run --config=vitest.integration.config.mjs --coverage",
     "test:integration:ci": "firebase emulators:exec --only firestore --project demo-zod-firebase-admin 'vitest run --config=vitest.integration.config.mjs --coverage'",
-    "type-check": "tsc"
+    "type-check": "tsc && tsc -p tsconfig.test.json"
   }
 }
