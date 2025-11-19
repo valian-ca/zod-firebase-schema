@@ -39,7 +39,7 @@
     "@swc/core": "1.15.2",
     "@swc/helpers": "0.5.17",
     "@tsconfig/node22": "22.0.5",
-    "@valian/eslint-config": "2.0.1",
+    "@valian/eslint-config": "2.0.4",
     "@vitest/coverage-v8": "4.0.10",
     "eslint": "9.39.1",
     "firebase": "12.6.0",
