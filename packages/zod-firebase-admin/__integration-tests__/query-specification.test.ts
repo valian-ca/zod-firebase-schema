@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase-admin/app'
 import { Filter, getFirestore } from 'firebase-admin/firestore'
 import functionsTest from 'firebase-functions-test'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
-import { z } from 'zod'
+import * as z from 'zod'
 
 import { collectionsBuilder } from '../src'
 
