@@ -40,9 +40,9 @@ jobs:
       - name: Install zod@^${{ matrix.zod }} at workspace root
         run: pnpm add -Dw zod@^${{ matrix.zod }}
       - name: Install firebase@^${{ matrix.firebase }} for zod-firebase
-        run: pnpm -C packages/zod-firebase add -D firebase@^${{ matrix.firebase }}
+        run: pnpm add -Dw firebase@^${{ matrix.firebase }}
       - name: Install firebase-admin@^${{ matrix.firebase_admin }} for zod-firebase-admin
-        run: pnpm -C packages/zod-firebase-admin add -D firebase-admin@^${{ matrix.firebase_admin }}
+        run: pnpm add -Dw firebase-admin@^${{ matrix.firebase_admin }}
       - name: dedupe
         run: pnpm dedupe
       - name: type-check
