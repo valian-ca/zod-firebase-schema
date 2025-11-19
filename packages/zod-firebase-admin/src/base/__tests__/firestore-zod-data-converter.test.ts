@@ -1,7 +1,7 @@
 import { type QueryDocumentSnapshot, Timestamp } from 'firebase-admin/firestore'
 import { describe, expect, it, vi } from 'vitest'
 import { mock } from 'vitest-mock-extended'
-import { z, ZodError } from 'zod'
+import * as z from 'zod'
 
 import { firestoreZodDataConverter } from '../firestore-zod-data-converter'
 
@@ -153,7 +153,7 @@ describe('firestoreZodDataConverter', () => {
         })
         snapshot.data.mockReturnValue({ name: 123 })
 
-        expect(() => converter.fromFirestore(snapshot)).toThrow(ZodError)
+        expect(() => converter.fromFirestore(snapshot)).toThrow(z.ZodError)
       })
     })
 

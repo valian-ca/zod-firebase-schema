@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase-admin/app'
 import { type DocumentData, FieldValue, getFirestore, Timestamp } from 'firebase-admin/firestore'
 import functionsTest from 'firebase-functions-test'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
-import { z, ZodError } from 'zod'
+import * as z from 'zod'
 
 import { collectionsBuilder } from '../src'
 
@@ -226,7 +226,7 @@ describe('collectionsBuilder', () => {
     })
 
     it('should convert date', async () => {
-      await expect(collection.timestampTransform.findByIdOrThrow('bar')).rejects.toThrow(ZodError)
+      await expect(collection.timestampTransform.findByIdOrThrow('bar')).rejects.toThrow(z.ZodError)
 
       await expect(
         collectionWithSnapshotDataConverter.timestampTransform.findByIdOrThrow('bar'),

@@ -7,7 +7,7 @@ import {
 } from 'firebase-admin/firestore'
 import { describe, expect, it, vi } from 'vitest'
 import { mock } from 'vitest-mock-extended'
-import { z } from 'zod'
+import * as z from 'zod'
 
 import {
   type DocumentOutput,

@@ -1,7 +1,7 @@
 const ERROR = 2
 const ALWAYS = 'always'
 
-module.exports = {
+export default {
   extends: ['@commitlint/config-conventional'],
   defaultIgnores: true,
   parserPreset: {

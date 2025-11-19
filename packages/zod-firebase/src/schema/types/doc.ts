@@ -1,5 +1,5 @@
 import { type ReadonlyDeep } from 'type-fest'
-import { type z } from 'zod'
+import type * as z from 'zod'
 
 import {
   type DocumentOutput,

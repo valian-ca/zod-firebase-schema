@@ -9,7 +9,7 @@ import {
   type Timestamp,
 } from 'firebase-admin/firestore'
 import { type EmptyObject, type ReadonlyDeep } from 'type-fest'
-import { type z } from 'zod'
+import type * as z from 'zod'
 
 type ZodSimpleDocumentData<Output extends DocumentData = DocumentData, Input extends DocumentData = Output> = z.ZodType<
   Output,

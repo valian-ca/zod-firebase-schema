@@ -12,7 +12,7 @@ import { initializeApp } from 'firebase/app'
 import functionsTest from 'firebase-functions-test'
 import { nanoid } from 'nanoid'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
-import { z, ZodError } from 'zod'
+import * as z from 'zod'
 
 import { type Collections, collectionsBuilder } from '../src'
 
@@ -237,7 +237,7 @@ describe('collectionsBuilder', () => {
     })
 
     it('should convert date', async () => {
-      await expect(collection.timestampTransform.findByIdOrThrow('bar')).rejects.toBeInstanceOf(ZodError)
+      await expect(collection.timestampTransform.findByIdOrThrow('bar')).rejects.toBeInstanceOf(z.ZodError)
 
       await expect(
         collectionWithSnapshotDataConverter.timestampTransform.findByIdOrThrow('bar'),
