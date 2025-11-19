@@ -1,3 +1,4 @@
+import { initializeApp } from 'firebase/app'
 import {
   connectFirestoreEmulator,
   doc,
@@ -7,8 +8,7 @@ import {
   queryEqual,
   setDoc,
   Timestamp,
-} from '@firebase/firestore'
-import { initializeApp } from 'firebase/app'
+} from 'firebase/firestore'
 import functionsTest from 'firebase-functions-test'
 import { nanoid } from 'nanoid'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'

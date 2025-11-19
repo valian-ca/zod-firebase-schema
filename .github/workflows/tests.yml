@@ -12,13 +12,8 @@ jobs:
       fail-fast: false
       matrix:
         zod: ['3', '4']
-        firebase: ['11', '12']
+        firebase: ['12']
         firebase_admin: ['12', '13']
-        exclude:
-          - firebase: '11'
-            firebase_admin: '13'
-          - firebase: '12'
-            firebase_admin: '12'
     name: tests (zod@${{ matrix.zod }}, firebase@${{ matrix.firebase }}, firebase-admin@${{ matrix.firebase_admin }})
     steps:
       - uses: actions/checkout@v5

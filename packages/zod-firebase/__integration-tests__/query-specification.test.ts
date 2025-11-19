@@ -1,3 +1,4 @@
+import { initializeApp } from 'firebase/app'
 import {
   connectFirestoreEmulator,
   doc,
@@ -5,8 +6,7 @@ import {
   orderBy as orderByConstraint,
   setDoc,
   where as whereConstraint,
-} from '@firebase/firestore'
-import { initializeApp } from 'firebase/app'
+} from 'firebase/firestore'
 import functionsTest from 'firebase-functions-test'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import * as z from 'zod'
