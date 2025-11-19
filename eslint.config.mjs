@@ -4,7 +4,7 @@ import { json } from '@valian/eslint-config/json'
 import { typescript } from '@valian/eslint-config/typescript'
 import { vitest } from '@valian/eslint-config/vitest'
 import { zod } from '@valian/eslint-config/zod'
-import { defineConfig } from 'eslint/config'
+import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
   ...base,
@@ -13,20 +13,9 @@ export default defineConfig([
   ...json,
   ...vitest,
   ...zod,
-  {
-    ignores: ['**/dist/', '**/lib', '**/coverage/'],
-  },
+  globalIgnores(['**/dist/', '**/lib', '**/coverage/']),
   {
     files: ['**/*.ts'],
-    languageOptions: {
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-    linterOptions: {
-      reportUnusedDisableDirectives: true,
-    },
     rules: {
       '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
     },
