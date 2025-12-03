@@ -1,3 +1,7 @@
+## 2.1.1 (2025-12-03)
+
+This was a version bump only for zod-firebase-admin to align it with other projects, there were no code changes.
+
 ## 2.1.0 (2025-10-31)
 
 ### 🩹 Fixes

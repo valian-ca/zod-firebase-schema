@@ -1,7 +1,7 @@
 {
   "name": "zod-firebase-admin",
   "description": "zod firebase-admin schema",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/valian-ca/zod-firebase-schema.git"
