@@ -7,12 +7,12 @@ import { zod } from '@valian/eslint-config/zod'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  ...base,
-  ...typescript,
-  ...importSort,
-  ...json,
-  ...vitest,
-  ...zod,
+  base,
+  typescript,
+  importSort,
+  json,
+  vitest,
+  zod,
   globalIgnores(['**/dist/', '**/lib', '**/coverage/']),
   {
     files: ['**/*.ts'],
