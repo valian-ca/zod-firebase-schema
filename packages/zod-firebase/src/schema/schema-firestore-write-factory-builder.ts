@@ -17,7 +17,10 @@ export const schemaFirestoreWriteFactoryBuilder = <TCollectionSchema extends Col
   _schema: TCollectionSchema,
   { getFirestore }: FirestoreFactoryOptions = {},
 ): SchemaFirestoreWriteFactoryBuilder<TCollectionSchema> => {
-  const converter = firestoreOmitMetaDataConverter<SchemaDocumentInput<TCollectionSchema>>()
+  const converter = firestoreOmitMetaDataConverter<
+    SchemaDocumentInput<TCollectionSchema>,
+    SchemaDocumentInput<TCollectionSchema>
+  >()
   const build = (parentPath?: [string, string]): SchemaFirestoreWriteFactory<TCollectionSchema> => {
     const collectionPath: CollectionPath = parentPath ? [...parentPath, collectionName] : [collectionName]
     return {

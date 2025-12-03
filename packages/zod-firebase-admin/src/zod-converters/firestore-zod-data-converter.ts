@@ -1,6 +1,6 @@
 import { type DocumentData, type FirestoreDataConverter, type QueryDocumentSnapshot } from 'firebase-admin/firestore'
 
-import { omitMetadata, type WithFieldValueAndMetadata } from './firestore-omit-meta-data-converter'
+import { firestoreOmitMetaDataConverter } from './firestore-omit-meta-data-converter'
 import { type DocumentInput, type DocumentOutput, type MetaOutputOptions, type ZodTypeDocumentData } from './types'
 import { type ZodErrorHandler } from './zod-error-handler'
 
@@ -20,8 +20,7 @@ export const firestoreZodDataConverter = <
   outputOptions?: TOptions,
   options?: FirestoreZodDataConverterOptions,
 ): FirestoreDataConverter<AppModelType, DbModelType> => ({
-  toFirestore: (modelObject) =>
-    omitMetadata<AppModelType, DbModelType>(modelObject as WithFieldValueAndMetadata<AppModelType>),
+  ...firestoreOmitMetaDataConverter<AppModelType, DbModelType>(),
   fromFirestore: (snapshot) => {
     const data = options?.snapshotDataConverter ? options.snapshotDataConverter(snapshot) : snapshot.data()
     const output = zod.safeParse(
