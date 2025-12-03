@@ -12,7 +12,7 @@ export type WithFieldValueAndMetadata<T extends DocumentData = DocumentData> = W
   readonly _readTime?: Timestamp
 }
 
-export const omitMetadata = <
+const omitMetadata = <
   AppModelType extends DocumentData = DocumentData,
   DbModelType extends DocumentData = DocumentData,
 >({
@@ -23,10 +23,11 @@ export const omitMetadata = <
   ...rest
 }: WithFieldValueAndMetadata<AppModelType>) => rest as WithFieldValue<DbModelType>
 
-export const firestoreOmitMetaDataConverter = <T extends DocumentData = DocumentData>(): FirestoreDataConverter<
-  T,
-  T
-> => ({
-  toFirestore: (modelObject) => omitMetadata<T, T>(modelObject as WithFieldValueAndMetadata<T>),
-  fromFirestore: (snapshot) => snapshot.data() as T,
+export const firestoreOmitMetaDataConverter = <
+  AppModelType extends DocumentData = DocumentData,
+  DbModelType extends DocumentData = DocumentData,
+>(): FirestoreDataConverter<AppModelType, DbModelType> => ({
+  toFirestore: (modelObject) =>
+    omitMetadata<AppModelType, DbModelType>(modelObject as WithFieldValueAndMetadata<AppModelType>),
+  fromFirestore: (snapshot) => snapshot.data() as AppModelType,
 })

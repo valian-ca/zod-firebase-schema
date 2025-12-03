@@ -23,12 +23,12 @@ const rootCollectionBuilder = <TCollectionName extends string, TCollectionSchema
 ): Collection<TCollectionName, TCollectionSchema> => {
   const builder = collectionFactoryBuilder(collectionName, collectionSchema, factoryOptions)
   const collectionFactory = builder.build()
-  const subSchema = subCollectionsSchema(collectionSchema)
-  if (Object.keys(subSchema).length === 0) {
+  const subSchemas = subCollectionsSchema(collectionSchema)
+  if (Object.keys(subSchemas).length === 0) {
     return collectionFactory as Collection<TCollectionName, TCollectionSchema>
   }
 
-  const internalSchema = internalSchemaBuilder(subSchema, factoryOptions)
+  const internalSchema = internalSchemaBuilder(subSchemas, factoryOptions)
   const subCollectionsAccessor = (documentId: string) =>
     internalCollectionsBuilder(internalSchema, [collectionFactory.collectionPath, documentId])
 

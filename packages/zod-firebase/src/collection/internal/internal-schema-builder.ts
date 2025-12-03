@@ -1,13 +1,11 @@
+import { type ConditionalKeys, type ConditionalPick } from 'type-fest'
+
 import { type CollectionSchema, type FirestoreZodFactoryOptions, type Schema } from '../../schema'
 import { type CollectionFactoryBuilder, collectionFactoryBuilder } from '../factory/collection-factory-builder'
-import { type SubCollectionsSchema } from '../types'
 
-export type InternalSchema<TSchema extends Schema> = {
-  [CollectionName in keyof TSchema]: CollectionName extends string
-    ? TSchema[CollectionName] extends CollectionSchema
-      ? TSchema[CollectionName] & InternalCollectionSchema<CollectionName, TSchema[CollectionName]>
-      : never
-    : never
+export type InternalSchemas<TSchema extends Schema> = {
+  [CollectionName in ConditionalKeys<TSchema, CollectionSchema>]: TSchema[CollectionName] &
+    InternalCollectionSchema<CollectionName, TSchema[CollectionName]>
 }
 
 export type InternalCollectionSchema<
@@ -16,21 +14,19 @@ export type InternalCollectionSchema<
 > = TCollectionSchema &
   CollectionFactoryBuilder<TCollectionName, TCollectionSchema> & {
     readonly collectionName: TCollectionName
-    readonly internalSubSchema: SubCollectionsSchema<TCollectionSchema> extends Schema
-      ? InternalSchema<SubCollectionsSchema<TCollectionSchema>>
-      : null
+    readonly internalSubSchemas: InternalSchemas<ConditionalPick<TCollectionSchema, CollectionSchema>>
   }
 
 export const internalSchemaBuilder = <TSchema extends Schema>(
   schema: TSchema,
   options?: FirestoreZodFactoryOptions,
-): InternalSchema<TSchema> =>
+): InternalSchemas<TSchema> =>
   Object.fromEntries(
     Object.entries(schema).map(([collectionName, collectionSchema]) => [
       collectionName,
       internalCollectionSchema(collectionName, collectionSchema, options),
     ]),
-  ) as unknown as InternalSchema<TSchema>
+  ) as unknown as InternalSchemas<TSchema>
 
 const internalCollectionSchema = <TCollectionName extends string, TCollectionSchema extends CollectionSchema>(
   collectionName: TCollectionName,
@@ -39,9 +35,9 @@ const internalCollectionSchema = <TCollectionName extends string, TCollectionSch
 ) => {
   const factoryBuilder = collectionFactoryBuilder(collectionName, collectionSchema, options)
 
-  const { zod, singleDocumentKey, includeDocumentIdForZod, readonlyDocuments, ...subSchema } = collectionSchema
-  const internalSubSchema =
-    Object.keys(subSchema).length === 0 ? null : internalSchemaBuilder(subSchema as Schema, options)
+  const { zod, singleDocumentKey, includeDocumentIdForZod, readonlyDocuments, ...subSchemas } = collectionSchema
+  const internalSubSchemas =
+    Object.keys(subSchemas).length === 0 ? subSchemas : internalSchemaBuilder(subSchemas as Schema, options)
 
   return {
     collectionName,
@@ -49,8 +45,8 @@ const internalCollectionSchema = <TCollectionName extends string, TCollectionSch
     singleDocumentKey,
     includeDocumentIdForZod,
     readonlyDocuments,
-    internalSubSchema,
-    ...internalSubSchema,
+    internalSubSchemas,
+    ...internalSubSchemas,
     ...factoryBuilder,
   } as InternalCollectionSchema<TCollectionName, TCollectionSchema>
 }

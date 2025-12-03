@@ -1,7 +1,11 @@
 import { type FirestoreDataConverter } from '@firebase/firestore'
 import { type Except } from 'type-fest'
 
-import { firestoreZodDataConverter, type FirestoreZodDataConverterOptions, type MetaOutputOptions } from '../base'
+import {
+  firestoreZodDataConverter,
+  type FirestoreZodDataConverterOptions,
+  type MetaOutputOptions,
+} from '../zod-converters'
 
 import { type CollectionSchema, type SchemaDocumentInput, type SchemaDocumentOutput } from './types'
 

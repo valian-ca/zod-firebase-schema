@@ -1,6 +1,6 @@
 import { type Except } from 'type-fest'
 
-import { type MetaOutputOptions } from '../base'
+import { type MetaOutputOptions } from '../zod-converters'
 
 import { schemaFirestoreQueryFactory } from './schema-firestore-query-factory'
 import {
@@ -16,10 +16,10 @@ export interface SchemaFirestoreFactoryBuilder<TCollectionSchema extends Collect
   'build'
 > {
   build(this: void, parentPath?: [string, string]): SchemaFirestoreFactory<TCollectionSchema>
-  zodConverter<Options extends MetaOutputOptions>(
+  zodConverter<TOptions extends MetaOutputOptions>(
     this: void,
-    options?: Options,
-  ): SchemaFirestoreDataConverter<TCollectionSchema, Options>
+    options?: TOptions,
+  ): SchemaFirestoreDataConverter<TCollectionSchema, TOptions>
 }
 
 export const schemaFirestoreFactoryBuilder = <TCollectionSchema extends CollectionSchema>(

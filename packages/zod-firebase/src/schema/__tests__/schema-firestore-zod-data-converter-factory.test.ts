@@ -2,10 +2,10 @@ import { describe, expect, it, vi } from 'vitest'
 import { mock } from 'vitest-mock-extended'
 import * as z from 'zod'
 
-import { firestoreZodDataConverter } from '../../base'
+import { firestoreZodDataConverter } from '../../zod-converters'
 import { schemaFirestoreZodDataConverterFactory } from '../schema-firestore-zod-data-converter-factory'
 
-vi.mock('../../base')
+vi.mock('../../zod-converters')
 
 const TestDocumentZod = z.object({
   name: z.string(),

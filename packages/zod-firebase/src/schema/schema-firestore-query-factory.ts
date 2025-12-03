@@ -1,7 +1,7 @@
 import { type AggregateSpec, getAggregateFromServer, getDocs } from '@firebase/firestore'
 
-import { type MetaOutputOptions } from '../base'
 import { applyQuerySpecification, type QuerySpecification } from '../query'
+import { type MetaOutputOptions } from '../zod-converters'
 
 import {
   type CollectionSchema,

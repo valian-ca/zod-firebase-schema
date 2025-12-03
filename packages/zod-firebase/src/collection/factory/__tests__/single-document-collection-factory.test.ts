@@ -3,17 +3,15 @@ import { describe, expect, it, vi } from 'vitest'
 import { mock } from 'vitest-mock-extended'
 import * as z from 'zod'
 
-import {
-  firestoreDocument,
-  firestoreZodDataConverter,
-  type ZodDocumentReference,
-  type ZodDocumentSnapshot,
-} from '../../../base'
+import { firestoreDocument } from '../../../primitive'
 import { schemaFirestoreFactoryBuilder } from '../../../schema/schema-firestore-factory-builder'
+import { type ZodDocumentReference, type ZodDocumentSnapshot } from '../../../zod-converters'
+import { firestoreZodDataConverter } from '../../../zod-converters'
 import { singleDocumentCollectionFactory } from '../single-document-collection-factory'
 
 vi.mock('@firebase/firestore')
-vi.mock('../../../base')
+vi.mock('../../../primitive')
+vi.mock('../../../zod-converters')
 
 const TestDocumentZod = z.object({
   name: z.string(),

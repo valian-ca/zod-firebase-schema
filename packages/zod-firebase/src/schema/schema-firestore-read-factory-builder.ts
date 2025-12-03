@@ -1,10 +1,5 @@
-import {
-  type CollectionPath,
-  firestoreCollection,
-  firestoreCollectionGroup,
-  firestoreDocument,
-  type MetaOutputOptions,
-} from '../base'
+import { type CollectionPath, firestoreCollection, firestoreCollectionGroup, firestoreDocument } from '../primitive'
+import { type MetaOutputOptions } from '../zod-converters'
 
 import { schemaFirestoreQueryFactory } from './schema-firestore-query-factory'
 import {
@@ -21,10 +16,10 @@ import {
 export interface SchemaFirestoreReadFactoryBuilder<TCollectionSchema extends CollectionSchema> {
   build(this: void, parentPath?: [string, string]): SchemaFirestoreReadFactory<TCollectionSchema>
 
-  zodConverter<Options extends MetaOutputOptions>(
+  zodConverter<TOptions extends MetaOutputOptions>(
     this: void,
-    options?: Options,
-  ): SchemaFirestoreDataConverter<TCollectionSchema, Options>
+    options?: TOptions,
+  ): SchemaFirestoreDataConverter<TCollectionSchema, TOptions>
 
   group: SchemaFirestoreQueryFactory<TCollectionSchema>
 }
@@ -35,15 +30,15 @@ export const schemaFirestoreReadFactoryBuilder = <TCollectionSchema extends Coll
   { getFirestore, ...converterOptions }: FirestoreZodFactoryOptions = {},
 ): SchemaFirestoreReadFactoryBuilder<TCollectionSchema> => {
   const zodConverterFactory = schemaFirestoreZodDataConverterFactory(schema, converterOptions)
-  const collectionGroup = <Options extends MetaOutputOptions>(options?: Options) =>
+  const collectionGroup = <TOptions extends MetaOutputOptions>(options?: TOptions) =>
     firestoreCollectionGroup(collectionName, getFirestore?.()).withConverter(zodConverterFactory(options))
   const build = (parentPath?: [string, string]): SchemaFirestoreReadFactory<TCollectionSchema> => {
     const collectionPath: CollectionPath = parentPath ? [...parentPath, collectionName] : [collectionName]
 
     return {
-      collection: <Options extends MetaOutputOptions>(options?: Options) =>
+      collection: <TOptions extends MetaOutputOptions>(options?: TOptions) =>
         firestoreCollection(collectionPath, getFirestore?.()).withConverter(zodConverterFactory(options)),
-      doc: <Options extends MetaOutputOptions>(id: string, options?: Options) =>
+      doc: <TOptions extends MetaOutputOptions>(id: string, options?: TOptions) =>
         firestoreDocument(collectionPath, id, getFirestore?.()).withConverter(zodConverterFactory(options)),
       collectionGroup,
     }
