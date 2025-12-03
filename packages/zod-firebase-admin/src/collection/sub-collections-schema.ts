@@ -1,6 +1,11 @@
-import { type CollectionSchema } from '../schema'
+import { type EmptyObject } from 'type-fest'
 
-import { type SubCollectionsSchema } from './types'
+import { type CollectionSchema, type Schema } from '../schema'
+
+type SubCollectionsSchema<TSchema> =
+  Omit<TSchema, 'zod' | 'singleDocumentKey' | 'includeDocumentIdForZod' | 'readonlyDocuments'> extends Schema
+    ? Omit<TSchema, 'zod' | 'singleDocumentKey' | 'includeDocumentIdForZod' | 'readonlyDocuments'>
+    : EmptyObject
 
 export const subCollectionsSchema = <TCollectionSchema extends CollectionSchema>(
   collectionSchema: TCollectionSchema,

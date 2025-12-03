@@ -1,17 +1,16 @@
 import { type CollectionSchema, type Schema } from '../../schema'
 import { type Collection, type Collections } from '../types'
 
-import { type InternalCollectionSchema, type InternalSchema } from './index'
+import { type InternalCollectionSchema, type InternalSchemas } from './index'
 
 export const internalCollectionsBuilder = <TSchema extends Schema>(
-  internalSchema: InternalSchema<TSchema>,
+  internalSchema: InternalSchemas<TSchema>,
   parentPath: [string, string],
 ) =>
   Object.fromEntries(
-    Object.entries(internalSchema).map(([collectionName, schemaBuilder]) => [
-      collectionName,
-      internalCollectionBuilder(schemaBuilder, parentPath),
-    ]),
+    Object.entries<InternalCollectionSchema<string, TSchema[keyof TSchema]>>(internalSchema).map(
+      ([collectionName, schemaBuilder]) => [collectionName, internalCollectionBuilder(schemaBuilder, parentPath)],
+    ),
   ) as Collections<TSchema>
 
 const internalCollectionBuilder = <TCollectionName extends string, TCollectionSchema extends CollectionSchema>(
@@ -20,15 +19,15 @@ const internalCollectionBuilder = <TCollectionName extends string, TCollectionSc
 ) => {
   const collection = internalCollectionSchema.build(parentPath)
 
-  const { internalSubSchema } = internalCollectionSchema
-  if (!internalSubSchema) {
+  const { internalSubSchemas } = internalCollectionSchema
+  if (Object.keys(internalSubSchemas).length === 0) {
     return collection as Collection<TCollectionName, TCollectionSchema>
   }
 
   const subCollectionsAccessor = (documentId: string) =>
-    internalCollectionsBuilder(internalSubSchema, [collection.collectionPath, documentId])
+    internalCollectionsBuilder(internalSubSchemas, [collection.collectionPath, documentId])
 
-  return Object.assign(subCollectionsAccessor, collection, internalSubSchema) as Collection<
+  return Object.assign(subCollectionsAccessor, collection, internalSubSchemas) as Collection<
     TCollectionName,
     TCollectionSchema
   >
