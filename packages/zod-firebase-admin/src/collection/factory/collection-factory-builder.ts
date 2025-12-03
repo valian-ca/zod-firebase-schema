@@ -1,6 +1,6 @@
 import { type Except } from 'type-fest'
 
-import { firestoreCollectionPath } from '../../base'
+import { firestoreCollectionPath } from '../../primitive'
 import { type CollectionSchema, type FirestoreZodFactoryOptions } from '../../schema'
 import {
   type SchemaFirestoreFactoryBuilder,

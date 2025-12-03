@@ -1,10 +1,5 @@
-import {
-  type CollectionPath,
-  firestoreCollection,
-  firestoreCollectionGroup,
-  firestoreDocument,
-  type MetaOutputOptions,
-} from '../base'
+import { type CollectionPath, firestoreCollection, firestoreCollectionGroup, firestoreDocument } from '../primitive'
+import { type MetaOutputOptions } from '../zod-converters'
 
 import { schemaFirestoreQueryFactory } from './schema-firestore-query-factory'
 import {

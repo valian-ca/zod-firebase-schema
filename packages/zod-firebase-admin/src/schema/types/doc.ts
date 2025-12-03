@@ -6,7 +6,7 @@ import {
   type MetaOutputOptions,
   type ReadonlyDocumentOutput,
   type ZodTypeDocumentData,
-} from '../../base'
+} from '../../zod-converters'
 
 import { type CollectionSchema } from './schema'
 

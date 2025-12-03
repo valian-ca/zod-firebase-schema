@@ -5,8 +5,8 @@ import {
   type QuerySnapshot,
 } from 'firebase-admin/firestore'
 
-import { type MetaOutputOptions } from '../../base'
 import { type QuerySpecification } from '../../query'
+import { type MetaOutputOptions } from '../../zod-converters'
 
 import { type SchemaDocumentInput, type SchemaDocumentOutput } from './doc'
 import { type CollectionSchema } from './schema'

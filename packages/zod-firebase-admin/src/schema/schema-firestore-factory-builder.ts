@@ -1,6 +1,6 @@
 import { type Except } from 'type-fest'
 
-import { type MetaOutputOptions } from '../base'
+import { type MetaOutputOptions } from '../zod-converters'
 
 import { schemaFirestoreQueryFactory } from './schema-firestore-query-factory'
 import {

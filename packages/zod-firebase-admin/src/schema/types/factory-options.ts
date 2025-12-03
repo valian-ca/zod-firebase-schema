@@ -1,7 +1,7 @@
 import { type getFirestore } from 'firebase-admin/firestore'
 import { type Except } from 'type-fest'
 
-import { type FirestoreZodDataConverterOptions } from '../../base'
+import { type FirestoreZodDataConverterOptions } from '../../zod-converters'
 
 export interface FirestoreFactoryOptions {
   readonly getFirestore?: typeof getFirestore

@@ -1,5 +1,5 @@
-import { type MetaOutputOptions } from '../base'
 import { applyQuerySpecification } from '../query'
+import { type MetaOutputOptions } from '../zod-converters'
 
 import {
   type CollectionSchema,

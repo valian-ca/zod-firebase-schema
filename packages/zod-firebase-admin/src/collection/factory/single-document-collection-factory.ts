@@ -8,7 +8,6 @@ import {
 } from 'firebase-admin/firestore'
 import { type Except } from 'type-fest'
 
-import { type MetaOutputOptions } from '../../base'
 import {
   type CollectionSchema,
   type SchemaDocumentInput,
@@ -19,6 +18,7 @@ import {
   type SchemaReadDocumentReference,
   type SchemaWriteDocumentReference,
 } from '../../schema'
+import { type MetaOutputOptions } from '../../zod-converters'
 
 import {
   multiDocumentCollectionFactory,
