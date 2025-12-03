@@ -16,10 +16,10 @@ export interface SchemaFirestoreFactoryBuilder<TCollectionSchema extends Collect
   'build'
 > {
   build(this: void, parentPath?: [string, string]): SchemaFirestoreFactory<TCollectionSchema>
-  zodConverter<Options extends MetaOutputOptions>(
+  zodConverter<TOptions extends MetaOutputOptions>(
     this: void,
-    options?: Options,
-  ): SchemaFirestoreDataConverter<TCollectionSchema, Options>
+    options?: TOptions,
+  ): SchemaFirestoreDataConverter<TCollectionSchema, TOptions>
 }
 
 export const schemaFirestoreFactoryBuilder = <TCollectionSchema extends CollectionSchema>(

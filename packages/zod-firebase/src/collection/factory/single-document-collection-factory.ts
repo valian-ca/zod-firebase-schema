@@ -23,25 +23,25 @@ export interface SingleDocumentCollectionFactory<TCollectionSchema extends Colle
   readonly singleDocumentKey: string
 
   readonly read: Except<SchemaFirestoreReadFactory<TCollectionSchema>, 'doc'> & {
-    doc<Options extends MetaOutputOptions>(
+    doc<TOptions extends MetaOutputOptions>(
       this: void,
-      options?: Options,
-    ): SchemaReadDocumentReference<TCollectionSchema, Options>
+      options?: TOptions,
+    ): SchemaReadDocumentReference<TCollectionSchema, TOptions>
   }
 
   readonly write: Except<SchemaFirestoreWriteFactory<TCollectionSchema>, 'doc'> & {
     doc(this: void): SchemaWriteDocumentReference<TCollectionSchema>
   }
 
-  find<Options extends MetaOutputOptions>(
+  find<TOptions extends MetaOutputOptions>(
     this: void,
-    options?: Options,
-  ): Promise<SchemaDocumentOutput<TCollectionSchema, Options> | undefined>
+    options?: TOptions,
+  ): Promise<SchemaDocumentOutput<TCollectionSchema, TOptions> | undefined>
 
-  findOrThrow<Options extends MetaOutputOptions>(
+  findOrThrow<TOptions extends MetaOutputOptions>(
     this: void,
-    options?: Options,
-  ): Promise<SchemaDocumentOutput<TCollectionSchema, Options>>
+    options?: TOptions,
+  ): Promise<SchemaDocumentOutput<TCollectionSchema, TOptions>>
 
   findWithFallback(
     this: void,
@@ -83,10 +83,11 @@ export const singleDocumentCollectionFactory = <TCollectionSchema extends Collec
     singleDocumentKey,
     read: {
       ...read,
-      doc: <Options extends MetaOutputOptions>(options?: Options) => read.doc<Options>(singleDocumentKey, options),
+      doc: <TOptions extends MetaOutputOptions>(options?: TOptions) => read.doc<TOptions>(singleDocumentKey, options),
     },
-    find: <Options extends MetaOutputOptions>(options?: Options) => findById(singleDocumentKey, options),
-    findOrThrow: <Options extends MetaOutputOptions>(options?: Options) => findByIdOrThrow(singleDocumentKey, options),
+    find: <TOptions extends MetaOutputOptions>(options?: TOptions) => findById(singleDocumentKey, options),
+    findOrThrow: <TOptions extends MetaOutputOptions>(options?: TOptions) =>
+      findByIdOrThrow(singleDocumentKey, options),
     findWithFallback: (fallback) => findByIdWithFallback(singleDocumentKey, fallback),
     write: {
       ...write,

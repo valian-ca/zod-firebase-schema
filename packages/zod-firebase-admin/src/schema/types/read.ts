@@ -7,33 +7,33 @@ import { type CollectionSchema } from './schema'
 
 export type SchemaReadCollectionReference<
   TCollectionSchema extends CollectionSchema,
-  Options extends MetaOutputOptions = MetaOutputOptions,
-> = CollectionReference<SchemaDocumentOutput<TCollectionSchema, Options>, SchemaDocumentInput<TCollectionSchema>>
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+> = CollectionReference<SchemaDocumentOutput<TCollectionSchema, TOptions>, SchemaDocumentInput<TCollectionSchema>>
 
 export type SchemaReadDocumentReference<
   TCollectionSchema extends CollectionSchema,
-  Options extends MetaOutputOptions = MetaOutputOptions,
-> = DocumentReference<SchemaDocumentOutput<TCollectionSchema, Options>, SchemaDocumentInput<TCollectionSchema>>
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+> = DocumentReference<SchemaDocumentOutput<TCollectionSchema, TOptions>, SchemaDocumentInput<TCollectionSchema>>
 
 export type SchemaReadCollectionGroup<
   TCollectionSchema extends CollectionSchema,
-  Options extends MetaOutputOptions = MetaOutputOptions,
-> = Query<SchemaDocumentOutput<TCollectionSchema, Options>, SchemaDocumentInput<TCollectionSchema>>
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+> = Query<SchemaDocumentOutput<TCollectionSchema, TOptions>, SchemaDocumentInput<TCollectionSchema>>
 
 export interface SchemaFirestoreReadFactory<TCollectionSchema extends CollectionSchema> {
-  collection<Options extends MetaOutputOptions>(
+  collection<TOptions extends MetaOutputOptions>(
     this: void,
-    options?: Options,
-  ): SchemaReadCollectionReference<TCollectionSchema, Options>
+    options?: TOptions,
+  ): SchemaReadCollectionReference<TCollectionSchema, TOptions>
 
-  doc<Options extends MetaOutputOptions>(
+  doc<TOptions extends MetaOutputOptions>(
     this: void,
     id: string,
-    options?: Options,
-  ): SchemaReadDocumentReference<TCollectionSchema, Options>
+    options?: TOptions,
+  ): SchemaReadDocumentReference<TCollectionSchema, TOptions>
 
-  collectionGroup<Options extends MetaOutputOptions>(
+  collectionGroup<TOptions extends MetaOutputOptions>(
     this: void,
-    options?: Options,
-  ): SchemaReadCollectionGroup<TCollectionSchema, Options>
+    options?: TOptions,
+  ): SchemaReadCollectionGroup<TCollectionSchema, TOptions>
 }

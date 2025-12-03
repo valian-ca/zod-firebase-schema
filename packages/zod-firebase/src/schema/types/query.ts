@@ -15,23 +15,23 @@ import { type CollectionSchema } from './schema'
 
 export type SchemaQuery<
   TCollectionSchema extends CollectionSchema,
-  Options extends MetaOutputOptions = MetaOutputOptions,
-> = Query<SchemaDocumentOutput<TCollectionSchema, Options>, SchemaDocumentInput<TCollectionSchema>>
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+> = Query<SchemaDocumentOutput<TCollectionSchema, TOptions>, SchemaDocumentInput<TCollectionSchema>>
 
 export type SchemaQuerySnapshot<
   TCollectionSchema extends CollectionSchema,
-  Options extends MetaOutputOptions = MetaOutputOptions,
-> = QuerySnapshot<SchemaDocumentOutput<TCollectionSchema, Options>, SchemaDocumentInput<TCollectionSchema>>
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+> = QuerySnapshot<SchemaDocumentOutput<TCollectionSchema, TOptions>, SchemaDocumentInput<TCollectionSchema>>
 
 export type SchemaDocumentSnapshot<
   TCollectionSchema extends CollectionSchema,
-  Options extends MetaOutputOptions = MetaOutputOptions,
-> = DocumentSnapshot<SchemaDocumentOutput<TCollectionSchema, Options>, SchemaDocumentInput<TCollectionSchema>>
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+> = DocumentSnapshot<SchemaDocumentOutput<TCollectionSchema, TOptions>, SchemaDocumentInput<TCollectionSchema>>
 
 export type SchemaQueryDocumentSnapshot<
   TCollectionSchema extends CollectionSchema,
-  Options extends MetaOutputOptions = MetaOutputOptions,
-> = QueryDocumentSnapshot<SchemaDocumentOutput<TCollectionSchema, Options>, SchemaDocumentInput<TCollectionSchema>>
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+> = QueryDocumentSnapshot<SchemaDocumentOutput<TCollectionSchema, TOptions>, SchemaDocumentInput<TCollectionSchema>>
 
 export type SchemaQuerySpecification<
   TCollectionSchema extends CollectionSchema,

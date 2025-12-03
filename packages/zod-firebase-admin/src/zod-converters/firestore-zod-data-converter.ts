@@ -12,12 +12,12 @@ export interface FirestoreZodDataConverterOptions {
 
 export const firestoreZodDataConverter = <
   Z extends ZodTypeDocumentData,
-  OutputOptions extends MetaOutputOptions,
-  AppModelType extends DocumentOutput<Z, OutputOptions> = DocumentOutput<Z, OutputOptions>,
+  TOptions extends MetaOutputOptions,
+  AppModelType extends DocumentOutput<Z, TOptions> = DocumentOutput<Z, TOptions>,
   DbModelType extends DocumentData = DocumentInput<Z>,
 >(
   zod: Z,
-  outputOptions?: OutputOptions,
+  outputOptions?: TOptions,
   options?: FirestoreZodDataConverterOptions,
 ): FirestoreDataConverter<AppModelType, DbModelType> => ({
   toFirestore: (modelObject) =>

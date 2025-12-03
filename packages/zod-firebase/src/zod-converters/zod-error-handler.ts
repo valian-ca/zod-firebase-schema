@@ -1,8 +1,8 @@
 import { type DocumentData, type QueryDocumentSnapshot } from '@firebase/firestore'
-// eslint-disable-next-line import-x/consistent-type-specifier-style,zod-x/prefer-namespace-import
-import type { ZodError } from 'zod'
+import type * as z3 from 'zod/v3'
+import type * as z4 from 'zod/v4/core'
 
 export type ZodErrorHandler = <T extends DocumentData = DocumentData>(
-  zodError: ZodError<T>,
+  zodError: z4.$ZodError<T> | z3.ZodError<T>,
   snapshot: QueryDocumentSnapshot,
 ) => Error

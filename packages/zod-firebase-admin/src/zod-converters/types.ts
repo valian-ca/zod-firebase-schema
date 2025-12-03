@@ -30,61 +30,61 @@ export interface MetaOutputOptions {
   readonly readonly?: true
 }
 
-export type MetaOutput<Options extends MetaOutputOptions> = (Options extends { _id: false }
+export type MetaOutput<TOptions extends MetaOutputOptions> = (TOptions extends { _id: false }
   ? EmptyObject
   : { readonly _id: string }) &
-  (Options extends { _createTime: true } ? { readonly _createTime: Timestamp } : EmptyObject) &
-  (Options extends { _updateTime: true } ? { readonly _updateTime: Timestamp } : EmptyObject) &
-  (Options extends { _readTime: true } ? { readonly _readTime: Timestamp } : EmptyObject)
+  (TOptions extends { _createTime: true } ? { readonly _createTime: Timestamp } : EmptyObject) &
+  (TOptions extends { _updateTime: true } ? { readonly _updateTime: Timestamp } : EmptyObject) &
+  (TOptions extends { _readTime: true } ? { readonly _readTime: Timestamp } : EmptyObject)
 
 export type DocumentOutput<
   Z extends ZodTypeDocumentData,
-  OutputOptions extends MetaOutputOptions = MetaOutputOptions,
-> = (OutputOptions extends { readonly: true } ? ReadonlyDeep<z.output<Z>> : z.output<Z>) & MetaOutput<OutputOptions>
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+> = (TOptions extends { readonly: true } ? ReadonlyDeep<z.output<Z>> : z.output<Z>) & MetaOutput<TOptions>
 
 export type ReadonlyDocumentOutput<
   Z extends ZodTypeDocumentData,
-  OutputOptions extends MetaOutputOptions = MetaOutputOptions,
-> = ReadonlyDeep<z.output<Z>> & MetaOutput<OutputOptions>
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+> = ReadonlyDeep<z.output<Z>> & MetaOutput<TOptions>
 
 export type ZodDocumentReference<
   Z extends ZodTypeDocumentData,
-  OutputOptions extends MetaOutputOptions = MetaOutputOptions,
-  AppModelType extends DocumentOutput<Z, OutputOptions> = DocumentOutput<Z, OutputOptions>,
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+  AppModelType extends DocumentOutput<Z, TOptions> = DocumentOutput<Z, TOptions>,
   DbModelType extends DocumentData = DocumentInput<Z>,
 > = DocumentReference<AppModelType, DbModelType>
 
 export type ZodDocumentSnapshot<
   Z extends ZodTypeDocumentData,
-  OutputOptions extends MetaOutputOptions = MetaOutputOptions,
-  AppModelType extends DocumentOutput<Z, OutputOptions> = DocumentOutput<Z, OutputOptions>,
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+  AppModelType extends DocumentOutput<Z, TOptions> = DocumentOutput<Z, TOptions>,
   DbModelType extends DocumentData = DocumentInput<Z>,
 > = DocumentSnapshot<AppModelType, DbModelType>
 
 export type ZodCollectionReference<
   Z extends ZodTypeDocumentData,
-  OutputOptions extends MetaOutputOptions = MetaOutputOptions,
-  AppModelType extends DocumentOutput<Z, OutputOptions> = DocumentOutput<Z, OutputOptions>,
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+  AppModelType extends DocumentOutput<Z, TOptions> = DocumentOutput<Z, TOptions>,
   DbModelType extends DocumentData = DocumentInput<Z>,
 > = CollectionReference<AppModelType, DbModelType>
 
 export type ZodCollectionGroup<
   Z extends ZodTypeDocumentData,
-  OutputOptions extends MetaOutputOptions = MetaOutputOptions,
-  AppModelType extends DocumentOutput<Z, OutputOptions> = DocumentOutput<Z, OutputOptions>,
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+  AppModelType extends DocumentOutput<Z, TOptions> = DocumentOutput<Z, TOptions>,
   DbModelType extends DocumentData = DocumentInput<Z>,
 > = CollectionGroup<AppModelType, DbModelType>
 
 export type ZodQuery<
   Z extends ZodTypeDocumentData,
-  OutputOptions extends MetaOutputOptions = MetaOutputOptions,
-  AppModelType extends DocumentOutput<Z, OutputOptions> = DocumentOutput<Z, OutputOptions>,
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+  AppModelType extends DocumentOutput<Z, TOptions> = DocumentOutput<Z, TOptions>,
   DbModelType extends DocumentData = DocumentInput<Z>,
 > = Query<AppModelType, DbModelType>
 
 export type ZodQuerySnapshot<
   Z extends ZodTypeDocumentData,
-  OutputOptions extends MetaOutputOptions = MetaOutputOptions,
-  AppModelType extends DocumentOutput<Z, OutputOptions> = DocumentOutput<Z, OutputOptions>,
+  TOptions extends MetaOutputOptions = MetaOutputOptions,
+  AppModelType extends DocumentOutput<Z, TOptions> = DocumentOutput<Z, TOptions>,
   DbModelType extends DocumentData = DocumentInput<Z>,
 > = QuerySnapshot<AppModelType, DbModelType>

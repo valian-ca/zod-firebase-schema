@@ -35,17 +35,17 @@ export type SchemaFallbackOutputDocument<
 export interface MultiDocumentCollectionFactory<
   TCollectionSchema extends CollectionSchema,
 > extends SchemaFirestoreFactory<TCollectionSchema> {
-  findById<Options extends MetaOutputOptions>(
+  findById<TOptions extends MetaOutputOptions>(
     this: void,
     id: string,
-    options?: Options,
-  ): Promise<SchemaDocumentOutput<TCollectionSchema, Options> | undefined>
+    options?: TOptions,
+  ): Promise<SchemaDocumentOutput<TCollectionSchema, TOptions> | undefined>
 
-  findByIdOrThrow<Options extends MetaOutputOptions>(
+  findByIdOrThrow<TOptions extends MetaOutputOptions>(
     this: void,
     id: string,
-    options?: Options,
-  ): Promise<SchemaDocumentOutput<TCollectionSchema, Options>>
+    options?: TOptions,
+  ): Promise<SchemaDocumentOutput<TCollectionSchema, TOptions>>
 
   findByIdWithFallback<TDocumentId extends string>(
     this: void,
@@ -84,11 +84,11 @@ export const multiDocumentCollectionFactory = <TCollectionSchema extends Collect
   schema: TCollectionSchema,
 ): MultiDocumentCollectionFactory<TCollectionSchema> => ({
   ...firestoreFactory,
-  findById: async <Options extends MetaOutputOptions>(id: string, options?: Options) => {
+  findById: async <TOptions extends MetaOutputOptions>(id: string, options?: TOptions) => {
     const doc = await firestoreFactory.read.doc(id, options).get()
     return doc.data()
   },
-  findByIdOrThrow: async <Options extends MetaOutputOptions>(id: string, options?: Options) => {
+  findByIdOrThrow: async <TOptions extends MetaOutputOptions>(id: string, options?: TOptions) => {
     const reference = firestoreFactory.read.doc(id, options)
     const doc = await reference.get()
     if (!doc.exists) {
