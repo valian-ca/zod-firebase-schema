@@ -8,8 +8,10 @@ import {
 import { schemaFirestoreWriteFactoryBuilder } from './schema-firestore-write-factory-builder'
 import { type CollectionSchema, type FirestoreFactoryOptions, type SchemaFirestoreFactory } from './types'
 
-export interface SchemaFirestoreFactoryBuilder<TCollectionSchema extends CollectionSchema>
-  extends Except<SchemaFirestoreReadFactoryBuilder<TCollectionSchema>, 'build'> {
+export interface SchemaFirestoreFactoryBuilder<TCollectionSchema extends CollectionSchema> extends Except<
+  SchemaFirestoreReadFactoryBuilder<TCollectionSchema>,
+  'build'
+> {
   build(this: void, parentPath?: [string, string]): SchemaFirestoreFactory<TCollectionSchema>
 }
 

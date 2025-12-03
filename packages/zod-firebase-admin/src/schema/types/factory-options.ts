@@ -8,5 +8,4 @@ export interface FirestoreFactoryOptions {
 }
 
 export interface FirestoreZodFactoryOptions
-  extends FirestoreFactoryOptions,
-    Except<FirestoreZodDataConverterOptions, 'includeDocumentIdForZod'> {}
+  extends FirestoreFactoryOptions, Except<FirestoreZodDataConverterOptions, 'includeDocumentIdForZod'> {}

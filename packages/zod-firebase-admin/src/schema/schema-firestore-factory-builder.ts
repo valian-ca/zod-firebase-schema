@@ -11,8 +11,10 @@ import { schemaFirestoreWriteFactoryBuilder } from './schema-firestore-write-fac
 import { type SchemaFirestoreDataConverter } from './schema-firestore-zod-data-converter-factory'
 import { type CollectionSchema, type FirestoreFactoryOptions, type SchemaFirestoreFactory } from './types'
 
-export interface SchemaFirestoreFactoryBuilder<TCollectionSchema extends CollectionSchema>
-  extends Except<SchemaFirestoreReadFactoryBuilder<TCollectionSchema>, 'build'> {
+export interface SchemaFirestoreFactoryBuilder<TCollectionSchema extends CollectionSchema> extends Except<
+  SchemaFirestoreReadFactoryBuilder<TCollectionSchema>,
+  'build'
+> {
   build(this: void, parentPath?: [string, string]): SchemaFirestoreFactory<TCollectionSchema>
   zodConverter<Options extends MetaOutputOptions>(
     this: void,
