@@ -32,8 +32,9 @@ export type SchemaFallbackOutputDocument<
   ? Except<Extract<SchemaDocumentOutput<TCollectionSchema>, { _id: TDocumentId }>, '_id'>
   : SchemaDocumentOutput<TCollectionSchema>
 
-export interface MultiDocumentCollectionFactory<TCollectionSchema extends CollectionSchema>
-  extends SchemaFirestoreFactory<TCollectionSchema> {
+export interface MultiDocumentCollectionFactory<
+  TCollectionSchema extends CollectionSchema,
+> extends SchemaFirestoreFactory<TCollectionSchema> {
   findById<Options extends MetaOutputOptions>(
     this: void,
     id: string,
