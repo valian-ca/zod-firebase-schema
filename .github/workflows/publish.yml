@@ -15,7 +15,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: setup pnpm
         uses: valian-ca/github-workflows/.github/actions/setup-pnpm@main
 
