@@ -1,3 +1,7 @@
+## 2.1.2 (2026-01-08)
+
+This was a version bump only for zod-firebase to align it with other projects, there were no code changes.
+
 ## 2.1.1 (2025-12-03)
 
 This was a version bump only for zod-firebase to align it with other projects, there were no code changes.
