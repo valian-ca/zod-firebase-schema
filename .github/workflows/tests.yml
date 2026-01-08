@@ -61,5 +61,10 @@ jobs:
           directory: ./packages/zod-firebase-admin/coverage
           flags: zod-${{ matrix.zod }}_firebase-admin-${{ matrix.firebase_admin }}
           token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Set up Java for firebase emulators
+        uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: '21'
       - name: integration tests
-        run: npm run test:integration:ci
+        run: pnpm run test:integration:ci
