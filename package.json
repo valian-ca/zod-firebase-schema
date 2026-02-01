@@ -40,7 +40,7 @@
     "@swc/helpers": "0.5.18",
     "@tsconfig/node24": "24.0.3",
     "@valian/eslint-config": "2.0.7",
-    "@vitest/coverage-v8": "4.0.16",
+    "@vitest/coverage-v8": "4.0.18",
     "eslint": "9.39.2",
     "firebase": "12.7.0",
     "firebase-admin": "13.6.0",
@@ -54,7 +54,7 @@
     "ts-essentials": "10.1.1",
     "tsdown": "0.18.4",
     "typescript": "5.9.3",
-    "vitest": "4.0.16",
+    "vitest": "4.0.18",
     "zod": "4.3.5"
   },
   "engines": {
